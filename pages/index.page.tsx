@@ -12,7 +12,16 @@ export default function HomePage() {
     formState: { errors },
   } = useForm<FormFields>();
 
-  const onSubmit = (data: FormFields) => console.log(data);
+  const onSubmit = async (data: FormFields) => {
+    const resp = await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((r) => r.json());
+    console.log(resp);
+  };
 
   return (
     <div className={styles.formContainer}>
