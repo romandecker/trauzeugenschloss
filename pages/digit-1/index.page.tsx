@@ -1,10 +1,16 @@
 import { DigitPageLayout } from "../../components/layouts/DigitPageLayout";
 import { sessionOptions } from "../../server/session";
 import { withIronSessionSsr } from "iron-session/next";
+import { encode as morseEncode } from "morse";
 import { ReactElement } from "react";
 
-export default function Digit1Page() {
-  return <div>digit 1 page waaat</div>;
+export interface Digit1PageProps {
+  // string of "-", "." and " "
+  morseCode: string;
+}
+
+export default function Digit1Page({ morseCode }: Digit1PageProps) {
+  return <div>{morseCode}</div>;
 }
 
 Digit1Page.getLayout = function getLayout(page: ReactElement) {
@@ -24,6 +30,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   return {
     props: {
       user: req.session.user,
+      morseCode: morseEncode(process.env.FIRST_DIGIT_PASSWORD || ""),
     },
   };
 }, sessionOptions);
