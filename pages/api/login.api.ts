@@ -1,8 +1,15 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { sessionOptions } from "../../server/session";
+import { withIronSessionApiRoute } from "iron-session/next";
 
-export default function loginHandler(req: NextApiRequest, res: NextApiResponse) {
+export default withIronSessionApiRoute(async function loginHandler(req, res) {
   if (req.method !== "POST") {
     res.status(405).end();
   }
-  res.status(200).json({ success: req.body.password === process.env.ENTRY_PASSWORD });
-}
+  if (req.body.password === process.env.ENTRY_PASSWORD) {
+    req.session.user = {};
+    await req.session.save();
+    res.status(200).json({ success: true });
+  } else {
+    res.status(400).json({ success: false });
+  }
+}, sessionOptions);
