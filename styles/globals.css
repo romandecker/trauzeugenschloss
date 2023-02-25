@@ -19,6 +19,8 @@ html,
 body,
 #__next {
   height: 100%;
+  background-color: black;
+  color: white;
 }
 /*
   Typographic tweaks!
@@ -67,4 +69,8 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+a {
+  color: white;
 }
