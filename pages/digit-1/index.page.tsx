@@ -1,8 +1,9 @@
 import { DigitPageLayout } from "../../components/layouts/DigitPageLayout";
 import { sessionOptions } from "../../server/session";
+import { MorsePlayer } from "./morse";
 import { withIronSessionSsr } from "iron-session/next";
 import { encode as morseEncode } from "morse";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 
 export interface Digit1PageProps {
   // string of "-", "." and " "
@@ -10,12 +11,30 @@ export interface Digit1PageProps {
 }
 
 export default function Digit1Page({ morseCode }: Digit1PageProps) {
-  return <div>{morseCode}</div>;
-}
+  const [isOn, setOn] = useState(false);
+  const play = (onTime: number) => {
+    setOn(true);
+    window?.navigator?.vibrate?.(onTime);
+    setTimeout(() => {
+      setOn(false);
+    }, onTime);
+  };
+  const morsePlayerRef = useRef<MorsePlayer>(new MorsePlayer(morseCode, play));
 
-Digit1Page.getLayout = function getLayout(page: ReactElement) {
-  return <DigitPageLayout>{page}</DigitPageLayout>;
-};
+  return (
+    <DigitPageLayout
+      onMouseDown={() => {
+        morsePlayerRef.current.play();
+      }}
+      onMouseUp={() => {
+        morsePlayerRef.current.cancel();
+      }}
+      isLightMode={isOn}
+    >
+      {morseEncode("HOLD")}&nbsp;&nbsp;&nbsp;{morseEncode("ON")}
+    </DigitPageLayout>
+  );
+}
 
 export const getServerSideProps = withIronSessionSsr(async function getServerSideProps({ req }) {
   if (!req.session.user) {

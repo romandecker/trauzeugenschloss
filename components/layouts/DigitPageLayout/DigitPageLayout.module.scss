@@ -3,6 +3,15 @@
   width: 100%;
   padding: 6px;
 
+  &.light {
+    background-color: white;
+    color: black;
+
+    a {
+      color: black;
+    }
+  }
+
   nav {
     padding: 6px;
   }

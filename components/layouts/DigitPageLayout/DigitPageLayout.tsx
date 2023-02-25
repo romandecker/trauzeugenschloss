@@ -1,17 +1,33 @@
 import styles from "./DigitPageLayout.module.scss";
+import classNames from "classnames";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { MouseEventHandler } from "react";
 
-export function DigitPageLayout({ children }: React.PropsWithChildren<{}>) {
-  useEffect(() => {
-    window.navigator.vibrate(100);
-  });
+export interface DigitPageLayoutProps extends React.PropsWithChildren<{}> {
+  isLightMode?: boolean;
+  onMouseDown?: () => void;
+  onMouseUp?: () => void;
+}
+
+export function DigitPageLayout({
+  children,
+  isLightMode,
+  onMouseDown,
+  onMouseUp,
+}: DigitPageLayoutProps) {
   return (
-    <div className={styles.digitPageLayout}>
+    <div className={classNames(styles.digitPageLayout, { [styles.light]: isLightMode })}>
       <nav>
         <Link href="/">⬅ ? ? ?</Link>
       </nav>
-      <main>{children}</main>
+      <main
+        onTouchStart={onMouseDown}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onTouchEnd={onMouseUp}
+      >
+        {children}
+      </main>
     </div>
   );
 }
