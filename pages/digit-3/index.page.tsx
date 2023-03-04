@@ -39,7 +39,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   return {
     props: {
       user: req.session.user,
-      solution: req.session.solution,
+      solution: req.session.solution || [null, null, null],
       morseCode: morseEncode(process.env.FIRST_DIGIT_PASSWORD || ""),
     },
   };

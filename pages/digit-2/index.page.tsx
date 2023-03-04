@@ -20,12 +20,12 @@ export default function Digit2Page(_props: Digit2PageProps) {
           <li>nur weil man meint, ich würde streng riechen.</li>
         </ul>
         <ul>
-          <li>Ein Samstag im Juli, lang, lang ist's her,</li>
-          <li>da wurd' ich gebracht - zu Papier.</li>
+          <li>Ein Samstag im Juli, lang, lang ist&apos;s her,</li>
+          <li>da wurd&apos; ich gebracht - zu Papier.</li>
         </ul>
         <ul>
           <li>Glückwünsche geschrieben mit goldenen Stiften,</li>
-          <li>gefällt's mir am besten bei Unterschriften.</li>
+          <li>gefällt&apos;s mir am besten bei Unterschriften.</li>
         </ul>
         <ul>
           <li>Klar sichtbar versteckt, dicht zwischen den Worten,</li>
@@ -50,7 +50,7 @@ export const getServerSideProps = withIronSessionSsr(async function getServerSid
   return {
     props: {
       user: req.session.user,
-      solution: req.session.solution,
+      solution: req.session.solution || [null, null, null],
       morseCode: morseEncode(process.env.FIRST_DIGIT_PASSWORD || ""),
     },
   };
