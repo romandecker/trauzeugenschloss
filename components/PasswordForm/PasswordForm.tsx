@@ -46,7 +46,7 @@ export function PasswordForm({ checkEndpoint, onSuccess, submitLabel = "OK" }: P
       onSubmit={handleSubmit(onSubmit)}
       className={classNames(styles.PasswordForm, { [styles.shaking]: isShaking })}
     >
-      <label htmlFor="password">Passwort:</label>
+      <label htmlFor="password">Passwort:&nbsp;</label>
       <input type="password" {...register("password")} />
       <button type="submit">OK</button>
     </form>
