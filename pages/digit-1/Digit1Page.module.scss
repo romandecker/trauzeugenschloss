@@ -7,10 +7,14 @@
   height: 100%;
   margin: auto;
   gap: 10px;
+  user-select: none;
 
   .hint {
     font-size: 40px;
     text-align: center;
-    user-select: none;
+  }
+
+  form input {
+    user-select: auto;
   }
 }
