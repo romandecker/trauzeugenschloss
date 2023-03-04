@@ -13,5 +13,6 @@ export const sessionOptions = {
 declare module "iron-session" {
   interface IronSessionData {
     user?: Record<string, unknown>;
+    solution?: [number | null, number | null, number | null];
   }
 }

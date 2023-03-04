@@ -2,14 +2,12 @@ import styles from "./Digit.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
 
-type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-
 export interface UnsolvedDigitProps {
   href: string;
 }
 
 export interface SolvedDigitProps {
-  solvedDigit: Digit;
+  solvedDigit: number;
 }
 
 export type DigitProps = SolvedDigitProps | UnsolvedDigitProps;

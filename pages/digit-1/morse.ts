@@ -23,9 +23,11 @@ export class MorsePlayer {
       });
 
       if (!this.timeout) {
-        break;
+        throw new Error("Canceled");
       }
     }
+
+    console.log("Play finished");
   }
 
   cancel() {

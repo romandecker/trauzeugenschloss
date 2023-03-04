@@ -1,3 +1,4 @@
+import { useSolution } from "../../SolutionContext";
 import styles from "./DigitPageLayout.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
@@ -15,10 +16,11 @@ export function DigitPageLayout({
   onMouseDown,
   onMouseUp,
 }: DigitPageLayoutProps) {
+  const solution = useSolution();
   return (
     <div className={classNames(styles.digitPageLayout, { [styles.light]: isLightMode })}>
       <nav>
-        <Link href="/">⬅ ? ? ?</Link>
+        <Link href="/">⬅ {solution.map((d) => d ?? "?").join(" ")}</Link>
       </nav>
       <main
         onTouchStart={onMouseDown}

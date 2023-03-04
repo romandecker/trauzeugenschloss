@@ -1,3 +1,4 @@
+import { SolutionContext } from "../components/SolutionContext";
 import "../styles/globals.css";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
@@ -15,5 +16,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(<Component {...pageProps} />);
+  return (
+    <SolutionContext.Provider value={pageProps.solution || [null, null, null]}>
+      {getLayout(<Component {...pageProps} />)}
+    </SolutionContext.Provider>
+  );
 }

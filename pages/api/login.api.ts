@@ -7,6 +7,7 @@ export default withIronSessionApiRoute(async function loginHandler(req, res) {
   }
   if (req.body.password === process.env.ENTRY_PASSWORD) {
     req.session.user = {};
+    req.session.solution = [null, null, null];
     await req.session.save();
     res.status(200).json({ success: true });
   } else {
