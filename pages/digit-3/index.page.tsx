@@ -15,11 +15,10 @@ export default function Digit3Page(_props: Digit3PageProps) {
   return (
     <DigitPageLayout>
       <div className={styles.players}>
-        <audio controls></audio>
-        <audio controls></audio>
-        <audio controls></audio>
-        <audio controls></audio>
-        <audio controls></audio>
+        <audio controls src="/audio/1.mp3"></audio>
+        <audio controls src="/audio/2.mp3"></audio>
+        <audio controls src="/audio/3.mp3"></audio>
+        <audio controls src="/audio/4.mp3"></audio>
         <PasswordForm checkEndpoint="/api/digits/3" onSuccess={() => router.push("/")} />
       </div>
     </DigitPageLayout>
