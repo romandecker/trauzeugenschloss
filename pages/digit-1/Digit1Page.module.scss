@@ -14,7 +14,7 @@
     text-align: center;
   }
 
-  form input {
+  form input[type="password"] {
     user-select: auto;
   }
 }

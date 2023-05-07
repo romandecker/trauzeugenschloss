@@ -2,7 +2,7 @@ import { useSolution } from "../../SolutionContext";
 import styles from "./DigitPageLayout.module.scss";
 import classNames from "classnames";
 import Link from "next/link";
-import React, { MouseEventHandler } from "react";
+import React from "react";
 
 export interface DigitPageLayoutProps extends React.PropsWithChildren<{}> {
   isLightMode?: boolean;

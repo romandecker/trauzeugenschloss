@@ -21,6 +21,7 @@ body,
   height: 100%;
   background-color: black;
   color: white;
+  font-family: monospace;
 }
 /*
   Typographic tweaks!
@@ -72,5 +73,12 @@ h6 {
 }
 
 a {
+  color: white;
+}
+
+button {
+  background: #444;
+  border: 1px solid white;
+  border-radius: 2px;
   color: white;
 }
