@@ -7,7 +7,7 @@ export default withIronSessionApiRoute(async function loginHandler(req, res) {
   }
   try {
     const digitNumber = parseInt(req.query.digit as string, 10);
-    const envName = `DIGIT_${digitNumber}_PASSWORD`;
+    const envName = `DIGIT_${digitNumber}_PASSWORD_REGEX`;
 
     const passwordPattern = process.env[envName];
 
