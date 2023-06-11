@@ -40,21 +40,3 @@ export class MorsePlayer {
     }
   }
 }
-
-const playNext = (play: (onTime: number) => void, [ch, ...rest]: readonly string[]) => {
-  if (ch === undefined) {
-    return () => {};
-  }
-
-  if (!(ch in TIMES)) {
-    throw new Error(`Invalid morse code character "${ch}"`);
-  }
-
-  const onTime = TIMES[ch as keyof typeof TIMES];
-
-  play(onTime);
-
-  const timeout = setTimeout(() => playNext(play, rest), TIMES.gap + onTime);
-
-  return () => clearTimeout(timeout);
-};
