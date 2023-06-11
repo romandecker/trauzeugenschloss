@@ -1,8 +1,11 @@
+const UNIT_TIME = 200;
+
 const TIMES = {
-  ".": 200,
-  "-": 1000,
-  " ": 2000,
-  gap: 200,
+  GAP_BETWEEN_LETTERS: UNIT_TIME,
+  " ": UNIT_TIME * 7,
+
+  ".": UNIT_TIME,
+  "-": UNIT_TIME * 3,
 } as const;
 
 export class MorsePlayer {
@@ -19,7 +22,7 @@ export class MorsePlayer {
       }
 
       await new Promise((resolve) => {
-        this.timeout = setTimeout(resolve, onTime + TIMES.gap);
+        this.timeout = setTimeout(resolve, onTime + TIMES.GAP_BETWEEN_LETTERS);
       });
 
       if (!this.timeout) {
